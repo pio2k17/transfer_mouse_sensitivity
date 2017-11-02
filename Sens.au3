@@ -2,7 +2,7 @@
 ; Script to perform a 360 over a series of mouse inputs and transfer sensitivity between games
 ;
 ; Requires AutoIT: https://www.autoitscript.com/site/autoit/downloads/
-; Open SciTE script editor and follow the instruction below.
+; Open this script in SciTE script editor and follow the instructions below.
 ;
 ; How to start/stop this script....
 ;       To start script: Tools menu -> Go
@@ -14,10 +14,10 @@
 ; 1) Start script
 ; 2) Open a game you have already tuned your sensitivity in
 ; 3) Hit NUMPAD0 to make your mouse attempt a 360
-; 3) Change $Movement_Total below until it does a perfect 360 in your tuned game. For changes to
+; 4) Change $Movement_Total below until it does a perfect 360 in your tuned game. For changes to
 ;    take effect you will have to stop this script, edit the value, save it, and start the script
 ;    again
-; 4) Now that it's doing a perfect 360, save the script, it's now tuned to your sensitivity and
+; 5) Now that it's doing a perfect 360, save the script, it's now tuned to your sensitivity and
 ;    for ready to use
 
 $Movement_Total = 5702 ; perfect 360 in Overwatch @ 9.57 sensitivity
@@ -53,11 +53,11 @@ Func DoThreeSixty()
 EndFunc
 
 Func _MouseMovePlus($X = "", $Y = "")
-        Local $MOUSEEVENTF_MOVE = 0x1
-    DllCall("user32.dll", "none", "mouse_event", _
+   Local $MOUSEEVENTF_MOVE = 0x1
+   DllCall("user32.dll", "none", "mouse_event", _
             "long",  $MOUSEEVENTF_MOVE, _
             "long",  $X, _
             "long",  $Y, _
             "long",  0, _
         "long",  0)
-	 EndFunc
+EndFunc

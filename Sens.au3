@@ -26,9 +26,9 @@ $Movement_Total = 5702 ; perfect 360 in Overwatch @ 9.57 sensitivity
 ; How to use this script to transfer your sensitivity to a new game
 ; ################################################################################################
 ; 1) Open the game you want to transfer your sensitivity settings to
-; 1) Hit NUMPAD0 to do a 360
-; 2) Tune the game's in-game sensitivity until it also does a perfect 360
-; 2) You now have the same sensitivity in both games
+; 2) Hit NUMPAD0 to do a 360
+; 3) Tune the game's in-game sensitivity until it also does a perfect 360
+; 4) You now have the same sensitivity in both games
 
 ;
 ; Code

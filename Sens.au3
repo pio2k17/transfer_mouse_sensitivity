@@ -20,8 +20,10 @@
 ; 5) Now that it's doing a perfect 360, save the script, it's now tuned to your sensitivity and
 ;    for ready to use
 
-$Movement_Total = 5702 ; perfect 360 in Overwatch @ 9.57 sensitivity
+; $Movement_Total = 11938 ; 16:9 2560x1440 550 dpi, perfect 360 in Overwatch(4.57), PUBG(38 General, 45 ADS), R6Seige(42 w/ MouseSensitivityMultiplierUnit=0.002500)
+  $Movement_Total = 11938 ; 16:9 2560x1440 550 dpi, perfect 360 in Overwatch(4.57), PUBG(38 General, 45 ADS), R6Seige(42 w/ MouseSensitivityMultiplierUnit=0.002500)
 
+;
 ; ################################################################################################
 ; How to use this script to transfer your sensitivity to a new game
 ; ################################################################################################
@@ -35,11 +37,26 @@ $Movement_Total = 5702 ; perfect 360 in Overwatch @ 9.57 sensitivity
 ;
 HotKeySet("{NUMPAD0}", "DoThreeSixty")
 
+#include <Misc.au3>
+
 While 1
-    Sleep(1000)
+   ; If capslock is on, do the script every 5 seconds, this is for games like Rainbow 6 Seige that don't pass
+   ; your key presses to background applications like this script. In apps like these hitting NUMPAD0 won't work
+   $runScript = false
+   If _IsToggled ("14") Then
+	  beep(500, 300)
+	  $runScript = true;
+   EndIf
+   Sleep(1000)
+   if ($runScript) Then
+	  DoThreeSixty()
+	  Sleep(5000)
+	  $runScript = false;
+   EndIf
 WEnd
 
 Func DoThreeSixty()
+   beep (100,200)
    $movementTotal = $Movement_Total;
    $movementStep = 30 ; how many pixels to move in a single iteration.  Don't let this exceed half of your resolution.
    $delay = 10 ; delay in milliseconds between movements.  Making this too low is prone to causing dropped inputs.
@@ -60,4 +77,12 @@ Func _MouseMovePlus($X = "", $Y = "")
             "long",  $Y, _
             "long",  0, _
         "long",  0)
+EndFunc
+
+Func _IsToggled($sHexKey, $vDLL = 'user32.dll')
+    ; $hexKey must be the value of one of the keys.
+    ; _Is_Key_Pressed will return 0 if the key is not pressed, 1 if it is.
+    Local $a_R = DllCall($vDLL, "short", "GetKeyState", "int", '0x' & $sHexKey)
+    If Not @error And BitAND($a_R[0], 0xFF) = 1 Then Return 1
+    Return 0
 EndFunc
